@@ -1,0 +1,41 @@
+### IntelliJ IDEA ###
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+# Ignorar archivos: 
+src/level1Ex1/ExerciseDescriptionLvl1Ex1
+src/level1Ex2/ExerciseDescriptionLvl1Ex2
+src/level1Ex3/ExerciseDescriptionLvl1Ex3
+src/level2Ex1Ex2/ExerciseDescriptionLvl2Ex1Ex2
+src/level3/ExerciseDescriptionLvl3
+S103_Java_Collections.iml
+.idea/
+out/
+
+
