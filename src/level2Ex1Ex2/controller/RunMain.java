@@ -2,7 +2,7 @@ package level2Ex1Ex2.controller;
 
 import level2Ex1Ex2.data.DataSample;
 import level2Ex1Ex2.model.Restaurant;
-import level2Ex1Ex2.utilsIO.KeyboardInput;
+import level2Ex1Ex2.utils.KeyboardInput;
 
 import java.util.HashMap;
 import java.util.HashSet;

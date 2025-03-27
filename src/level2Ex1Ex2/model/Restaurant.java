@@ -1,6 +1,6 @@
 package level2Ex1Ex2.model;
 
-import level2Ex1Ex2.utilsIO.KeyboardInput;
+import level2Ex1Ex2.utils.KeyboardInput;
 
 import java.util.*;
 
@@ -51,13 +51,6 @@ public class Restaurant {
             System.out.println("Nombre: " + restaurant + ", Puntuaciones: " + scores);
         }
     }
+
 }
 
-/// / Convert HashMap to TreeMap to sort by key alphabetically
-//TreeMap<String, HashSet<Integer>> sortedMap = new TreeMap<>(restaurantsScore);
-//
-//        for (Map.Entry<String, HashSet<Integer>> entry : sortedMap.entrySet()) {
-//String restaurant = entry.getKey();// Get the key
-//TreeSet<Integer> sortedScores = new TreeSet<>(Collections.reverseOrder());
-//            sortedScores.addAll(entry.getValue());// Get the value
-//        System.out.println("Name: " + restaurant + ", scores:  " + sortedScores);

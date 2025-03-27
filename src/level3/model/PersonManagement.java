@@ -1,6 +1,6 @@
 package level3.model;
 
-import level3.utilsIO.KeyboardInput;
+import level3.utilsIO.InputOutput;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,8 +19,12 @@ public class PersonManagement {
         return this.persons;
     }
 
+    public String getFilePath() {
+        return this.filePath;
+    }
+
     public void loadData() {
-        String fullPath = this.filePath + File.separator + "persons.txt";
+        String fullPath = this.filePath + File.separator + "persons.csv";
         int numberLine = 1;
         try (BufferedReader br = new BufferedReader(new FileReader(fullPath))) {
             String line;
@@ -60,15 +64,15 @@ public class PersonManagement {
     }
 
     public String askDNI(String message) {
-        return KeyboardInput.readFormatDNI(message);
+        return InputOutput.readFormatDNI(message);
     }
 
     public String askName(String message) {
-        return KeyboardInput.readString(message);
+        return InputOutput.readString(message);
     }
 
     public String askSurnames(String message) {
-        return KeyboardInput.readString(message);
+        return InputOutput.readString(message);
     }
 
     public Person createPerson(String idNumber, String name, String surnames) {
@@ -79,16 +83,16 @@ public class PersonManagement {
         this.persons.add(person);
     }
 
-    public void writeClassification(String idNumber, String name, String surnames) {
-        String fullPath = this.filePath + File.separator + "persons.txt";
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fullPath, true))) {
-            String data = idNumber + "," + name + "," + surnames;  // Build the line to save
-            bw.write(data);
-            bw.newLine();
-            System.out.println("Linia: \"" + data + "\" añadida en " + fullPath);
-        } catch (IOException e) {
-            System.out.println("Error al escribir en el archivo: " + e.getMessage());
-        }
-    }
+//    public void writeClassification(String idNumber, String name, String surnames) {
+//        String fullPath = this.filePath + File.separator + "persons.csv";
+//        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fullPath, true))) {
+//            String data = idNumber + "," + name + "," + surnames;  // Build the line to save
+//            bw.write(data);
+//            bw.newLine();
+//            System.out.println("Linia: \"" + data + "\" añadida en " + fullPath);
+//        } catch (IOException e) {
+//            System.out.println("Error al escribir en el archivo: " + e.getMessage());
+//        }
+//    }
 
 }

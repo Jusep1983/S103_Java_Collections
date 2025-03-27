@@ -2,7 +2,7 @@ package level3.controller;
 
 import level3.model.Person;
 import level3.model.PersonManagement;
-import level3.utilsIO.KeyboardInput;
+import level3.utilsIO.InputOutput;
 
 import java.util.Comparator;
 
@@ -12,7 +12,7 @@ public class RunMain {
         personManagement.loadData();
         boolean exit = false;
         do {
-            int option = KeyboardInput.readIntegerBetweenOnRange("""
+            int option = InputOutput.readIntegerBetweenOnRange("""
                     ------------------------------------------------------
                      MENÚ PERSONAS
                     ------------------------------------------------------
@@ -26,23 +26,10 @@ public class RunMain {
                     0- Salir.
                     Introduce una opción valida entre 0 y 7:
                     """, 0, 8);
+
             switch (option) {
                 case 1:
-                    String idNumber = personManagement.askDNI("Introduce DNI de la persona: ");
-                    if (!personManagement.dniExists(idNumber)) {
-                        String name = personManagement.askName("Introduce el nombre de la persona: ");
-                        name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-                        String surnames = personManagement.askSurnames(
-                                "Introduce los apellidos de la persona, separados por un espacio: ");
-                        surnames = surnames.substring(0, 1).toUpperCase() + surnames.substring(1).toLowerCase();
-                        Person person = personManagement.createPerson(idNumber, name, surnames);
-                        personManagement.addPerson(person);
-                        personManagement.writeClassification(idNumber, name, surnames);
-                        System.out.println(person + " añadida correctamente");
-                    } else {
-                        System.out.println("Error, ya existe una persona con dni " + idNumber +
-                                           "\nNo se ha podido introducir la persona");
-                    }
+                    RunMain.registerPerson(personManagement);
                     break;
                 case 2:
                     personManagement.getPersons().sort(Comparator.comparing(Person::getName));
@@ -74,5 +61,24 @@ public class RunMain {
                     break;
             }
         } while (!exit);
+    }
+
+    private static void registerPerson(PersonManagement personManagement) {
+        System.out.println("( Ejemplos de DNI correctos: 12345678Z 87654321X 11223344B 74246722P 55667788Z 39383352S 69967049Z )");
+        String idNumber = personManagement.askDNI("Introduce DNI de la persona: ");
+        if (personManagement.dniExists(idNumber)) {
+            System.out.println("Error, ya existe una persona con dni " + idNumber +
+                               "\nNo se ha podido introducir la persona");
+        } else {
+            String name = personManagement.askName("Introduce el nombre de la persona: ");
+            name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+            String surnames = personManagement.askSurnames(
+                    "Introduce los apellidos de la persona, separados por un espacio: ");
+            surnames = surnames.substring(0, 1).toUpperCase() + surnames.substring(1).toLowerCase();
+            Person person = personManagement.createPerson(idNumber, name, surnames);
+            personManagement.addPerson(person);
+            InputOutput.writeClassification(idNumber, name, surnames, personManagement.getFilePath());
+            System.out.println(person + " añadida correctamente");
+        }
     }
 }

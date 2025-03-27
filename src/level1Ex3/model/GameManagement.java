@@ -91,7 +91,7 @@ public class GameManagement {
             System.out.println("Sorry, try again...");
         }
         System.out.println("Total score: " + this.score);
-        return score;
+        return this.score;
     }
 
     public String clearText(String text) {

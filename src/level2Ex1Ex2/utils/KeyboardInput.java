@@ -1,4 +1,4 @@
-package level2Ex1Ex2.utilsIO;
+package level2Ex1Ex2.utils;
 
 import level2Ex1Ex2.exceptions.EmptyInputException;
 import level2Ex1Ex2.exceptions.ExceptionValueOutOfRange;

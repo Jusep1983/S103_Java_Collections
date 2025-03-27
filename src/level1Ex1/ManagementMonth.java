@@ -20,27 +20,33 @@ public class ManagementMonth {
         List<Month> list = Arrays.asList(january, february, march, april, may, june, july, september, october, november, december);
         ArrayList<Month> months = new ArrayList<>(list);
         System.out.println("\nImpresión ArrayList: ");
+
+
+        for (Month value : months) {
+            System.out.print(value.getName() + " ");
+        }
+
+        System.out.println("\nImpresión ArrayList con agosto: ");
         months.add(7, august);
 
-        for (int i = 0; i < months.size(); i++) {
-            System.out.print(months.get(i).getName() + " ");
+        for (Month value : months) {
+            System.out.print(value.getName() + " ");
         }
 
         Set<Month> monthsHashSet = new HashSet<>(months);
+
+        monthsHashSet.add(august);
+        monthsHashSet.add(may);
+        monthsHashSet.add(january);
 
         System.out.println("\nImpresión HahSet: ");
         for (Month month : monthsHashSet) {
             System.out.print(month.getName() + " ");
         }
 
-        monthsHashSet.add(august);
-        monthsHashSet.add(may);
-        monthsHashSet.add(january);
-
         Iterator<Month> iteratorMonthsHashSet = monthsHashSet.iterator();
 
         System.out.println("\nImpresión HahSet comprobando que no ha añadido duplicados: ");
-
         while (iteratorMonthsHashSet.hasNext()) {
             Month month = iteratorMonthsHashSet.next();
             System.out.print(month.getName() + " ");
