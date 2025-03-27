@@ -2,7 +2,7 @@
 
 El ejercicio trata sobre Collections, sus estructuras de datos y sus clases, aplicados a una utilidad simulada en cada ejercicio.
 
-## Enunciado:
+### Enunciado:
 
 ### Nivel 1
 - Ejercicio 1
@@ -36,7 +36,6 @@ Utilizando la clase del programa anterior, crea la implementación necesaria par
 Ejemplo:
 
 nombre: restaurant1, puntuación: 8
-
 nombre: restaurant1, puntuación: 7
 
 ### Nivel 3
@@ -46,52 +45,30 @@ Crea una aplicación capaz de leer un archivo CSV. Este archivo tiene 3 campos: 
 La clase Persona tiene 3 atributos:
 
 nombre
-
 apellido
-
 DNI
 
-
-
 La clase principal tiene el siguiente menú:
-
 1.- Introducir persona.
-
 2.- Mostrar a las personas ordenadas por nombre (A-Z).
-
 3.- Mostrar a las personas ordenadas por nombre (Z-A).
-
 4.- Mostrar a las personas ordenadas por apellidos (A-Z).
-
 5.- Mostrar a las personas ordenadas por apellidos (Z-A).
-
 6.- Mostrar a las personas ordenadas por DNI (1-9).
-
 7.- Mostrar a las personas ordenadas por DNI (9-1).
-
 0.- Salir.
 
-
-
 El programa deberá listar a las personas como el siguiente ejemplo:
-
 ___Nombre___ ____ Apellidos___ __NIF__
-
 Andreu Ballestero Llenas 34835767J
-
 Miquel Bayona Font 48743957B
-
 Guillem Capdevila Río 33957834J
-
 Albert Carbonell Ferrer 77364986R
-
 Ferran Casas Coderch 23047848P
-
 Maria Casellas Fuste 47102244S
-
 Genios Ciudad Vendrell 39718459N
 
-#💻 Tecnologías Utilizadas El proyecto ha sido desarrollado utilizando: Java 21 IntelliJ IDEA como entorno de desarrollo Git y GitHub para control de versiones.
+💻 Tecnologías Utilizadas El proyecto ha sido desarrollado utilizando: Java 21 IntelliJ IDEA como entorno de desarrollo Git y GitHub para control de versiones.
 
 📋 Requisitos Para ejecutar el proyecto es necesario contar con: JDK 21 instalado en el sistema Git instalado y configurado IntelliJ IDEA Conexión a internet para clonar el repositorio.
 
