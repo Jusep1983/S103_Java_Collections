@@ -91,7 +91,7 @@ Maria Casellas Fuste 47102244S
 
 Genios Ciudad Vendrell 39718459N
 
-💻 Tecnologías Utilizadas El proyecto ha sido desarrollado utilizando: Java 21 IntelliJ IDEA como entorno de desarrollo Git y GitHub para control de versiones.
+#💻 Tecnologías Utilizadas El proyecto ha sido desarrollado utilizando: Java 21 IntelliJ IDEA como entorno de desarrollo Git y GitHub para control de versiones.
 
 📋 Requisitos Para ejecutar el proyecto es necesario contar con: JDK 21 instalado en el sistema Git instalado y configurado IntelliJ IDEA Conexión a internet para clonar el repositorio.
 
