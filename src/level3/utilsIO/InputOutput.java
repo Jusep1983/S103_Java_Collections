@@ -36,6 +36,7 @@ public class InputOutput {
         } while (!correct);
         return number;
     }
+
     public static String readANonEmptyString(String message) {
         String text = "";
         boolean correct = false;
@@ -76,12 +77,11 @@ public class InputOutput {
         return inputStr;
     }
 
-    public static void writeClassification(String idNumber, String name, String surnames,String fullPath) {
+    public static void writePersonOnFile(String idNumber, String name, String surnames, String fullPath) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(fullPath, true))) {
             String data = idNumber + "," + name + "," + surnames;  // Build the line to save
             bw.write(data);
             bw.newLine();
-            System.out.println("Linia: \"" + data + "\" añadida en " + fullPath);
         } catch (IOException e) {
             System.out.println("Error al escribir en el archivo: " + e.getMessage());
         }
@@ -97,10 +97,9 @@ public class InputOutput {
     }
 
     private static boolean isValidDniFormat(String dniStr) {
-        if (!isValidLengthDniFormat(dniStr)) return false;
-        if (!isValidNumbersDniFormat(dniStr)) return false;
-        if (!isValidLetterDniFormat(dniStr)) return false;
-        return true;
+        return isValidLengthDniFormat(dniStr)
+               && isValidNumbersDniFormat(dniStr)
+               && isValidLetterDniFormat(dniStr);
     }
 
     private static boolean isValidLengthDniFormat(String dniStr) {
