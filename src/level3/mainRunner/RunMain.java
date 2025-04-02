@@ -1,4 +1,4 @@
-package level3.controller;
+package level3.mainRunner;
 
 import level3.model.Person;
 import level3.services.PersonManagement;

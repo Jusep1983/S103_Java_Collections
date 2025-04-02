@@ -1,6 +1,6 @@
 package level3;
 
-import level3.controller.RunMain;
+import level3.mainRunner.RunMain;
 
 public class Main {
 

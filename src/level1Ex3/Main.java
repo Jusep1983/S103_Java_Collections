@@ -1,6 +1,6 @@
 package level1Ex3;
 
-import static level1Ex3.controller.RunMain.runMain;
+import static level1Ex3.mainRunner.RunMain.runMain;
 
 public class Main {
 

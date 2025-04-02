@@ -24,26 +24,32 @@ public class Restaurant {
     public static void addScoreRestaurant(HashMap<String, HashSet<Integer>> restaurantsScore) {
         String name = askRestaurant();
         name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-        // If the restaurant does not exist, we create it.
-        if (!restaurantsScore.containsKey(name)) {
+        restaurantNameExists(restaurantsScore, name);
+        scoreOnRestaurantExists(restaurantsScore, name);
+    }
+
+    private static void restaurantNameExists(HashMap<String, HashSet<Integer>> restaurantsScore, String name) {
+        if (restaurantsScore.containsKey(name)) {
+            System.out.println("Ya existe un restaurante con nombre: " + name);
+        } else {
             restaurantsScore.put(name, new HashSet<>());
             System.out.println("Se ha creado un restaurante con nombre: " + name);
-        } else {
-            System.out.println("Ya existe un restaurante con nombre: " + name);
         }
+    }
+
+    private static void scoreOnRestaurantExists(HashMap<String, HashSet<Integer>> restaurantsScore, String name) {
         int score = askScore();
-        boolean addScore = restaurantsScore.get(name).add(score);
-        if (addScore) {
-            System.out.println("La puntuación " + score + " ha sido añadida al restaurante " + name);
-        } else {
+        if (!restaurantsScore.get(name).add(score)) {
             System.out.println("La puntuación " + score + " ya existe en el restaurante " + name);
             System.out.println("Puntuación no introducida ");
+        } else {
+            System.out.println("La puntuación " + score + " ha sido añadida al restaurante " + name);
         }
-
     }
 
     public static void showAllDataSorted(HashMap<String, HashSet<Integer>> restaurantsScore) {
         List<String> restaurantsNames = new ArrayList<>(restaurantsScore.keySet());
+        Collections.sort(restaurantsNames);
         for (String restaurant : restaurantsNames) {
             List<Integer> scores = new ArrayList<>(restaurantsScore.get(restaurant));
             Collections.sort(scores);

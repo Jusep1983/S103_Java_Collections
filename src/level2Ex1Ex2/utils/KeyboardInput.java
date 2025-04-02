@@ -1,58 +1,65 @@
 package level2Ex1Ex2.utils;
 
 import level2Ex1Ex2.exceptions.EmptyInputException;
-import level2Ex1Ex2.exceptions.ExceptionValueOutOfRange;
-import level2Ex1Ex2.exceptions.IncorrectNameException;
+import level2Ex1Ex2.exceptions.ValueOutOfRangeException;
 
-import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class KeyboardInput {
+
     private static final Scanner SC = new Scanner(System.in);
 
+    public static void numberNotEmpty(String input) throws EmptyInputException {
+        if (input.isEmpty()) {
+            throw new EmptyInputException("el campo no puede estar vacío");
+        }
+    }
+
+    public static void checkRangeNumber(String input, int minimum, int maximum) throws ValueOutOfRangeException {
+        int number = Integer.parseInt(input);
+        if (number < minimum || number > maximum) {
+            throw new ValueOutOfRangeException(
+                    "el valor introducido ha de estar entre " + minimum + " y " + maximum + ". "
+            );
+        }
+    }
+
     public static int readIntegerBetweenOnRange(String message, int minimum, int maximum) {
-        int number = 0;
-        boolean correct = false;
-        do {
-            System.out.print(message);
+        while (true) {
             try {
-                number = SC.nextInt();
-                if (number < minimum || number > maximum) {
-                    throw new ExceptionValueOutOfRange(
-                            "el valor introducido ha de estar entre " + minimum + " y " + maximum + ". "
-                    );
-                } else {
-                    correct = true;
-                }
-            } catch (ExceptionValueOutOfRange e) {
-                System.out.println("Error, " + e.getMessage());
-            } catch (InputMismatchException ex) {
+                System.out.print(message);
+                String input = SC.nextLine();
+                numberNotEmpty(input);
+                checkRangeNumber(input, minimum, maximum);
+                return Integer.parseInt(input);
+            } catch (NullPointerException | NumberFormatException e) {
                 System.out.println("Error de formato");
+            } catch (EmptyInputException | NoSuchElementException | IllegalStateException |
+                     ValueOutOfRangeException e) {
+                System.out.println("Error, " + e.getMessage());
             }
-            SC.nextLine();
-        } while (!correct);
-        return number;
+        }
+    }
+
+    public static String checkString() throws EmptyInputException {
+        String inputStr = SC.nextLine().trim();
+        if (inputStr.isEmpty()) {
+            throw new EmptyInputException("el nombre no puede estar vacío");
+        } else {
+            return inputStr;
+        }
     }
 
     public static String readString(String message) {
-        String inputStr = "";
-        boolean correct = false;
-        do {
-            System.out.print(message);
+        while (true) {
             try {
-                inputStr = SC.nextLine().trim();
-                if (inputStr.matches(".*\\d.*")) {
-                    throw new IncorrectNameException("el nombre no puede contener números");
-                }
-                if (inputStr.isEmpty()) {
-                    throw new EmptyInputException("el nombre no puede estar vacío");
-                }
-                correct = true;
-            } catch (EmptyInputException | IncorrectNameException e) {
+                System.out.print(message);
+                return checkString();
+            } catch (EmptyInputException | NoSuchElementException | IllegalStateException e) {
                 System.out.println("Error, " + e.getMessage());
             }
-        } while (!correct);
-        return inputStr;
+        }
     }
 
 }

@@ -39,7 +39,7 @@ public class PersonManagement {
                         Person person = new Person(idNumber, name, lastName);
                         this.persons.add(person);
                     } else {
-                        throw new IllegalArgumentException("Formato inválido: línea debe tener 3 campos");
+                        System.out.println("Formato inválido: línea " + numberLine + " debe tener 3 campos");
                     }
                 }
                 numberLine++;
@@ -106,8 +106,7 @@ public class PersonManagement {
         String[] surnameArray;
         String surnames;
         do {
-            surnames = askSurnames(
-            );
+            surnames = askSurnames();
             surnameArray = surnames.toLowerCase().split("\\s+");
             if (surnameArray.length != 2) {
                 System.out.println("Solo se admiten dos apellidos y separados por un espacio");

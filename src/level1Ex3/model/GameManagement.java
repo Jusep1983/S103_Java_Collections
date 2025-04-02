@@ -70,19 +70,24 @@ public class GameManagement {
     }
 
     public int gameTurn(String message, String randomCountry) {
-        String capital = "", capitalClean = "";
+        String capital = "";
         randomCountry = randomCountry.replace("_", " ");
-        String randomCountryClean = clearText(randomCountry);
+        randomCountry = clearText(randomCountry);
         String userCapital = KeyboardInput.readString(message + randomCountry.replace("_", " ") + ": ");
         userCapital = clearText(userCapital);
         for (Map.Entry<String, String> hashMap : this.countriesMap.entrySet()) {
             String country = clearText(hashMap.getKey());
-            if (country.equalsIgnoreCase(randomCountryClean)) {
+            if (country.equalsIgnoreCase(randomCountry)) {
                 capital = hashMap.getValue().replace("_", " ");
-                capitalClean = clearText(capital);
+                capital = clearText(capital);
             }
         }
-        if (userCapital.equalsIgnoreCase(capitalClean)) {
+        showAnswerToUser(userCapital, capital, randomCountry);
+        return this.score;
+    }
+
+    private void showAnswerToUser(String userCapital, String capital, String randomCountry) {
+        if (userCapital.equalsIgnoreCase(capital)) {
             System.out.println("Congratulations, you got it right! ");
             System.out.println("The capital of  " + randomCountry.replace("_", " ") + " is " + capital.replace("_", " ") + ". You have earned 1 point.");
             this.score++;
@@ -91,7 +96,6 @@ public class GameManagement {
             System.out.println("Sorry, try again...");
         }
         System.out.println("Total score: " + this.score);
-        return this.score;
     }
 
     public String clearText(String text) {

@@ -1,4 +1,4 @@
-package level2Ex1Ex2.controller;
+package level2Ex1Ex2.mainRunner;
 
 import level2Ex1Ex2.data.DataSample;
 import level2Ex1Ex2.model.Restaurant;

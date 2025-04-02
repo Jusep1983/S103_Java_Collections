@@ -2,79 +2,90 @@ package level3.utilsIO;
 
 import level3.exceptions.EmptyInputException;
 import level3.exceptions.IncorrectNameException;
-import level3.exceptions.ExceptionValueOutOfRange;
+import level3.exceptions.ValueOutOfRangeException;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class InputOutput {
+
     private static final Scanner SC = new Scanner(System.in);
 
+    public static void numberNotEmpty(String input) throws EmptyInputException {
+        if (input.isEmpty()) {
+            throw new EmptyInputException("el campo no puede estar vacío");
+        }
+    }
+
+    public static void checkRangeNumber(String input, int minimum, int maximum) throws ValueOutOfRangeException {
+        int number = Integer.parseInt(input);
+        if (number < minimum || number > maximum) {
+            throw new ValueOutOfRangeException(
+                    "el valor introducido ha de estar entre " + minimum + " y " + maximum + ". "
+            );
+        }
+    }
+
     public static int readIntegerBetweenOnRange(String message, int minimum, int maximum) {
-        int number = 0;
-        boolean correct = false;
-        do {
-            System.out.print(message);
+        while (true) {
             try {
-                number = SC.nextInt();
-                if (number < minimum || number > maximum) {
-                    throw new ExceptionValueOutOfRange(
-                            "el valor introducido ha de estar entre " + minimum + " y " + maximum + ". "
-                    );
-                } else {
-                    correct = true;
-                }
-            } catch (ExceptionValueOutOfRange e) {
-                System.out.println("Error, " + e.getMessage());
-            } catch (InputMismatchException ex) {
+                System.out.print(message);
+                String input = SC.nextLine();
+                numberNotEmpty(input);
+                checkRangeNumber(input, minimum, maximum);
+                return Integer.parseInt(input);
+            } catch (NullPointerException | NumberFormatException e) {
                 System.out.println("Error de formato");
+            } catch (EmptyInputException | NoSuchElementException | IllegalStateException |
+                     ValueOutOfRangeException e) {
+                System.out.println("Error, " + e.getMessage());
             }
-            SC.nextLine();
-        } while (!correct);
-        return number;
+        }
     }
 
     public static String readANonEmptyString(String message) {
-        String text = "";
-        boolean correct = false;
-        do {
-            System.out.print(message);
+        while (true) {
             try {
-                text = SC.nextLine().trim();
-                if (text.isEmpty()) {
-                    System.out.println("Error, el campo no puede quedar en blanco.");
-                } else {
-                    correct = true;
-                }
-            } catch (Exception ex) {
-                System.out.println("Error en la introducción del string.");
+                System.out.print(message);
+                return checkStringNotEmpty();
+            } catch (EmptyInputException | NoSuchElementException | IllegalStateException e) {
+                System.out.println("Error, " + e.getMessage());
             }
-        } while (!correct);
-        return text;
+        }
+    }
+
+    public static String checkStringNotEmpty() throws EmptyInputException {
+        String inputStr = SC.nextLine().trim();
+        if (inputStr.isEmpty()) {
+            throw new EmptyInputException("el nombre no puede estar vacío");
+        } else {
+            return inputStr;
+        }
+    }
+
+    public static String checkString() throws EmptyInputException {
+        String inputStr = SC.nextLine().trim();
+        if (inputStr.isEmpty()) {
+            throw new EmptyInputException("el nombre no puede estar vacío");
+        } else if (inputStr.matches(".*\\d.*")) {
+            throw new IncorrectNameException("el nombre no puede contener números");
+        } else {
+            return inputStr;
+        }
     }
 
     public static String readString(String message) {
-        String inputStr = "";
-        boolean correct = false;
-        do {
-            System.out.print(message);
+        while (true) {
             try {
-                inputStr = SC.nextLine().trim();
-                if (inputStr.matches(".*\\d.*")) {
-                    throw new IncorrectNameException("el nombre no puede contener números");
-                }
-                if (inputStr.isEmpty()) {
-                    throw new EmptyInputException("el nombre no puede estar vacío");
-                }
-                correct = true;
-            } catch (EmptyInputException | IncorrectNameException e) {
+                System.out.print(message);
+                return checkString();
+            } catch (EmptyInputException | IncorrectNameException | NoSuchElementException | IllegalStateException e) {
                 System.out.println("Error, " + e.getMessage());
             }
-        } while (!correct);
-        return inputStr;
+        }
     }
 
     public static void writePersonOnFile(String idNumber, String name, String surnames, String fullPath) {
@@ -103,36 +114,33 @@ public class InputOutput {
     }
 
     private static boolean isValidLengthDniFormat(String dniStr) {
-        boolean isValid = false;
         if (dniStr.length() != 9) {
             System.out.println("Un DNI debe tener 9 caracteres: 8 números y 1 letra.");
+            return false;
         } else {
-            isValid = true;
+            return true;
         }
-        return isValid;
     }
 
     private static boolean isValidNumbersDniFormat(String dniStr) {
-        boolean isValid = false;
         String numbers = dniStr.substring(0, 8);
         if (!numbers.chars().allMatch(Character::isDigit)) {
             System.out.println("Un DNI debe tener 9 caracteres: 8 números y 1 letra.");
+            return false;
         } else {
-            isValid = true;
+            return true;
         }
-        return isValid;
     }
 
     private static boolean isValidLetterDniFormat(String dniStr) {
-        boolean isValid = false;
         String numbers = dniStr.substring(0, 8);
         char letter = dniStr.charAt(8);
         if (getExpectedDniLetter(Integer.parseInt(numbers)) != letter) {
             System.out.println("La letra del DNI introducido es incorrecta.");
+            return false;
         } else {
-            isValid = true;
+            return true;
         }
-        return isValid;
     }
 
     private static char getExpectedDniLetter(int dniNumber) {
@@ -140,4 +148,5 @@ public class InputOutput {
                 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'};
         return lettersDni[dniNumber % 23];
     }
+
 }

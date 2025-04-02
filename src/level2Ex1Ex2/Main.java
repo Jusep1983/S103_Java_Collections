@@ -1,6 +1,6 @@
 package level2Ex1Ex2;
 
-import level2Ex1Ex2.controller.RunMain;
+import level2Ex1Ex2.mainRunner.RunMain;
 
 import java.util.*;
 
