@@ -15,11 +15,11 @@ public class RunMain {
     }
 
     private static void checkFileExists(GameManagement start) {
-        if (start.fileExists()) {
+        if (!start.fileExists()) {
+            throw new RouteNotFoundException("file not found.");
+        } else {
             start.loadData();
             start.game();
-        } else {
-            throw new RouteNotFoundException("file not found.");
         }
     }
 }
