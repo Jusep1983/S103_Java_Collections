@@ -16,6 +16,10 @@ public class KeyboardInput {
         }
     }
 
+    public static String readInput() {
+        return SC.nextLine().trim();
+    }
+
     public static void checkRangeNumber(String input, int minimum, int maximum) throws ValueOutOfRangeException {
         int number = Integer.parseInt(input);
         if (number < minimum || number > maximum) {
@@ -29,7 +33,7 @@ public class KeyboardInput {
         while (true) {
             try {
                 System.out.print(message);
-                String input = SC.nextLine();
+                String input = readInput();
                 numberNotEmpty(input);
                 checkRangeNumber(input, minimum, maximum);
                 return Integer.parseInt(input);
@@ -43,7 +47,7 @@ public class KeyboardInput {
     }
 
     public static String checkString() throws EmptyInputException {
-        String inputStr = SC.nextLine().trim();
+        String inputStr = readInput();
         if (inputStr.isEmpty()) {
             throw new EmptyInputException("el nombre no puede estar vacío");
         } else {

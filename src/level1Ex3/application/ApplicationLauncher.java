@@ -1,9 +1,9 @@
-package level1Ex3.mainRunner;
+package level1Ex3.application;
 
 import level1Ex3.exceptions.RouteNotFoundException;
 import level1Ex3.model.GameManagement;
 
-public class RunMain {
+public class ApplicationLauncher {
     public static void runMain() throws RouteNotFoundException {
         GameManagement start = new GameManagement();
         try {

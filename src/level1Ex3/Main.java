@@ -1,6 +1,6 @@
 package level1Ex3;
 
-import static level1Ex3.mainRunner.RunMain.runMain;
+import static level1Ex3.application.ApplicationLauncher.runMain;
 
 public class Main {
 

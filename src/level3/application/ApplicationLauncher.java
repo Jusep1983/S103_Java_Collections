@@ -1,4 +1,4 @@
-package level3.mainRunner;
+package level3.application;
 
 import level3.model.Person;
 import level3.services.PersonManagement;
@@ -6,7 +6,7 @@ import level3.utilsIO.InputOutput;
 
 import java.util.Comparator;
 
-public class RunMain {
+public class ApplicationLauncher {
     public static void startApp() {
         PersonManagement personManagement = new PersonManagement();
         personManagement.loadData();

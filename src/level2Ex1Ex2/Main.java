@@ -1,6 +1,6 @@
 package level2Ex1Ex2;
 
-import level2Ex1Ex2.mainRunner.RunMain;
+import level2Ex1Ex2.application.ApplicationLauncher;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ public class Main {
 
         HashMap<String, HashSet<Integer>> restaurantsScore = new HashMap<>();
 
-        RunMain.startApp(restaurantsScore);
+        ApplicationLauncher.startApp(restaurantsScore);
 
     }
 

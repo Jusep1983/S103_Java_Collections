@@ -10,8 +10,12 @@ public class KeyboardInput {
 
     private static final Scanner SC = new Scanner(System.in);
 
+    public static String readInput() {
+        return SC.nextLine().trim();
+    }
+
     public static String checkString() throws EmptyInputException, IncorrectNameException {
-        String inputStr = SC.nextLine().trim();
+        String inputStr = readInput();
         if (inputStr.isEmpty()) {
             throw new EmptyInputException("the name cannot be empty");
         } else if (inputStr.matches(".*\\d.*")) {
@@ -20,6 +24,7 @@ public class KeyboardInput {
             return inputStr;
         }
     }
+
 
     public static String readString(String message) {
         while (true) {
